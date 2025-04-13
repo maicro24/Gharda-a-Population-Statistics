@@ -1,0 +1,108 @@
+npm install -g pnpm
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Do You Love Me?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fce4ec;
+      text-align: center;
+    }
+
+    #questionContainer {
+      position: relative;
+      width: 600px;
+      height: 400px;
+      margin: 50px auto;
+      padding-top: 100px;
+      background-color: #fff;
+      border: 2px solid #e91e63;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      position: absolute;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    #yesBtn {
+      left: 150px;
+      top: 200px;
+      background-color: #4caf50;
+      color: white;
+    }
+
+    #noBtn {
+      left: 300px;
+      top: 200px;
+      background-color: #f44336;
+      color: white;
+    }
+
+    #heartLoader {
+      display: none;
+      font-size: 24px;
+      color: #e91e63;
+    }
+
+    #resultContainer {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #gifResult {
+      width: 300px;
+      margin-top: 10px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="questionContainer">
+    <h2>Are you ok? ❤️</h2>
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+
+    <div id="heartLoader">💗 Thinking...</div>
+
+    <div id="resultContainer">
+      <h3>Yaaay! 😍</h3>
+      <img id="gifResult" src="checking.gif" alt="Love GIF" />
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const questionContainer = document.getElementById("questionContainer");
+    const heartLoader = document.getElementById("heartLoader");
+    const resultContainer = document.getElementById("resultContainer");
+
+    noBtn.addEventListener("mouseover", () => {
+      const newX = Math.floor(Math.random() * (questionContainer.offsetWidth - noBtn.offsetWidth));
+      const newY = Math.floor(Math.random() * (questionContainer.offsetHeight - noBtn.offsetHeight));
+      noBtn.style.left = `${newX}px`;
+      noBtn.style.top = `${newY}px`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      heartLoader.style.display = "block";
+      setTimeout(() => {
+        heartLoader.style.display = "none";
+        resultContainer.style.display = "inherit";
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
